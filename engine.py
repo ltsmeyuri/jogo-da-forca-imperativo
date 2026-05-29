@@ -1,6 +1,6 @@
 import random
 
-#Declaração de Variáveis Globais 
+# Declaração de Variáveis Globais 
 erros_A = 0
 erros_B = 0
 letras_descobertas = []
@@ -11,36 +11,39 @@ jogador_atual = "Yuri"
 modo_multiplayer = False
 pontuacao_A = 0
 pontuacao_B = 0
+
 def processar_jogada(palpite):
     '''
     Recebe o palpite do jogador, valida e atualiza o estado do jogo;
     Retorna o status da jogada pra GUI saber o que mostrar.
     '''
-    global erros_A, erros_B, jogador_atual, pontuacao_B, pontuacao_A
+    global erros_A, erros_B, jogador_atual, pontuacao_A, pontuacao_B
     palpite = palpite.lower()
-    if not palpite.isalpha() or len(palpite)==0:
+    
+    if not palpite.isalpha() or len(palpite) == 0:
         return "invalida"
         
-    elif len(palpite)==1:
-
+    elif len(palpite) == 1:
         if palpite in letras_descobertas or palpite in letras_incorretas:
             return "repetida"
 
         if palpite in palavra_secreta:
             letras_descobertas.append(palpite)
             status = "acerto"
+            
+            # --- VOLTOU: Lógica de acúmulo de pontos base ---
             pontos_ganhos = palavra_secreta.count(palpite)
             if jogador_atual == "B":
                 pontuacao_B += pontos_ganhos
             else:
-                pontuacao_A +=pontos_ganhos
-
+                # Se for A ou Jogador 1, cai aqui nativamente
+                pontuacao_A += pontos_ganhos 
         else:
             letras_incorretas.append(palpite)
             if jogador_atual == "B": 
-                erros_B +=1
+                erros_B += 1
             else:
-                erros_A +=1
+                erros_A += 1
             status = "erro"
         
         if modo_multiplayer:
@@ -49,27 +52,23 @@ def processar_jogada(palpite):
             else:
                 jogador_atual = "A"
         return status
+        
     else:
-        if palpite==palavra_secreta:
-            if modo_multiplayer and jogador_atual=="A":
+        if palpite == palavra_secreta:
+            if modo_multiplayer and jogador_atual == "A":
                 return "venceuA"
-            elif modo_multiplayer and jogador_atual=="B":
+            elif modo_multiplayer and jogador_atual == "B":
                 return "venceuB"
             else:
                 return "venceu"
         else:
-            if modo_multiplayer and jogador_atual=="B":
+            if modo_multiplayer and jogador_atual == "B":
                 return "venceuA"
-            elif modo_multiplayer and jogador_atual=="A":
+            elif modo_multiplayer and jogador_atual == "A":
                 return "venceuB"
             else: 
                 return "perdeu"
 
-
-
-
-
-        
 def obter_estado_palavra():
     '''
     Cria a máscara com relação a palavra escolhida no banco e a retorna.
@@ -77,11 +76,10 @@ def obter_estado_palavra():
     mascara = ''
     for letra in palavra_secreta:
         if letra in letras_descobertas:
-            mascara +=letra + " "
+            mascara += letra + " "
         else:
             mascara += "_ "
     return mascara.strip()
-
 
 def inicializar_jogo(nova_palavra, multiplayer=False):
     '''
@@ -91,8 +89,8 @@ def inicializar_jogo(nova_palavra, multiplayer=False):
     palavra_secreta = nova_palavra
     erros_A = 0
     erros_B = 0
-    pontuacao_A=0
-    pontuacao_B=0
+    pontuacao_A = 0
+    pontuacao_B = 0
     letras_descobertas.clear()
     letras_incorretas.clear()
 
@@ -102,3 +100,24 @@ def inicializar_jogo(nova_palavra, multiplayer=False):
         jogador_atual = random.choice(["A", "B"])
     else:
         jogador_atual = "Jogador 1"
+
+def calcular_pontuacao_final(status_final):
+    '''
+    Aplica os pesos na pontuação base acumulada dependendo do resultado do jogo.
+    Derrota = Peso 0
+    Vitória Singleplayer = Peso 1
+    Vitória Multiplayer = Peso 2
+    Retorna a pontuação inteira final a ser salva.
+    '''
+    if status_final == "venceu":
+        return pontuacao_A * 1
+        
+    elif status_final == "venceuA":
+        return pontuacao_A * 2
+        
+    elif status_final == "venceuB":
+        return pontuacao_B * 2
+        
+    else:
+        # Se perdeu (por estourar limite de erros ou errar o chute da palavra)
+        return 0

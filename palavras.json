@@ -1,0 +1,58 @@
+{
+  "animais": {
+    "facil": [
+      "gato", "rato", "pato", "sapo", "urso",
+      "peixe", "vaca", "zebra", "lobo", "tigre",
+      "leao", "burro", "coelho", "ovelha", "cobra",
+      "porco", "galo", "pomba", "anta", "mula",
+      "foca", "corvo", "veado", "abelha", "mosca",
+      "baleia", "lontra", "aranha", "coruja", "pinguim"
+    ],
+    "dificil": [
+      "cavalo", "macaco", "camelo", "tucano", "girafa",
+      "canguru", "golfinho", "jacare", "suricato", "tamandua",
+      "ornitorrinco", "rinoceronte", "hipopotamo", "chimpanze", "caranguejo",
+      "esquilo", "alpaca", "iguana", "gazela", "doninha",
+      "lagarto", "maritaca", "ouriço", "lagosta", "hamster",
+      "guanaco", "pelicano", "flamingo", "bicho-preguica", "crocodilo"
+    ]
+  },
+
+  "frutas": {
+    "facil": [
+      "maca", "uva", "pera", "kiwi", "limao",
+      "manga", "coco", "figo", "caju", "ameixa",
+      "goiaba", "melao", "acerola", "pessego", "jabuticaba",
+      "roma", "umbu", "caja", "jaca", "siriguela",
+      "banana", "laranja", "abacate", "mexerica", "pitaya",
+      "caqui", "fruta-do-conde", "cupuacu", "graviola", "pitanga"
+    ],
+    "dificil": [
+      "abacaxi", "morango", "melancia", "maracuja", "carambola",
+      "nectarina", "framboesa", "lichia", "tangerina", "physalis",
+      "cranberry", "blueberry", "amora", "groselha", "mangostao",
+      "rambutan", "longan", "durian", "feijoa", "sapoti",
+      "pequi", "bacuri", "murici", "cambuci", "araca",
+      "jenipapo", "buriti", "pupunha", "tamarindo", "umbu-caja"
+    ]
+  },
+
+  "objetos": {
+    "facil": [
+      "mesa", "copo", "faca", "cama", "vaso",
+      "livro", "lapis", "porta", "janela", "bola",
+      "balde", "escova", "caneta", "prato", "toalha",
+      "garfo", "pente", "quadro", "caixa", "sacola",
+      "vela", "chave", "moeda", "travesseiro", "tapete",
+      "cabide", "tesoura", "escada", "panela", "almofada"
+    ],
+    "dificil": [
+      "cadeira", "relogio", "espelho", "teclado", "abajur",
+      "geladeira", "microfone", "ventilador", "calculadora", "parafuso",
+      "mochila", "interruptor", "liquidificador", "aspirador", "bicicleta",
+      "guarda-chuva", "furadeira", "grampeador", "binoculo", "tripé",
+      "termometro", "controle-remoto", "impressora", "roteador", "monitor",
+      "escorredor", "cafeteira", "lanterna", "estetoscopio", "microscopio"
+    ]
+  }
+}
